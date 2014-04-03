@@ -1,0 +1,52 @@
+#!/bin/bash
+
+
+CONFIGDIR=$HOME/.config/
+LOGFILE=$HOME/.logs/confkeeper
+
+VERBOSE=0
+
+
+cd $CONFIGDIR
+
+
+if [ ! -d .git ]; then
+	git init
+	git add .
+	git commit -m "initial autocommit"
+fi
+
+
+usage()
+{
+	cat <<EOT
+Usage: $0 -c
+EOT
+}
+
+
+cron()
+{
+	# Add new and changed files..
+	git add --all .
+	git commit -m "daily autocommit"
+	git gc
+}
+
+
+while getopts "hvc" opt; do
+	case $opt in
+		h)
+			usage
+			;;
+		v)
+			VERBOSE=1
+			;;
+		c)
+			cron
+			;;
+		\?)
+			usage
+			;;
+  esac
+done
