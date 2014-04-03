@@ -1,0 +1,12 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+my @strar = split //, $ARGV[0];
+
+for (my $i = 0; $i < 16; $i++) {
+	print shift @strar;
+}
+
+print "\n";
