@@ -1,0 +1,21 @@
+#!/bin/sh
+
+#       sticksync
+#
+#       (C) Copyright 2010 by Dominic Hopf <dmaphy@googlemail.com>
+#       Version: 1.0.0
+#       Last Change: 2010-02-28
+
+BACKUPDIR=$HOME/backups/
+
+if [ ! -d $BACKUPDIR$@ ]; then
+	echo -e "Could not find $BACKUPDIR$@.\nExiting.\n"
+	exit 1
+fi;
+
+if [ ! -d /media/$@  ]; then
+	echo -e "Could not find /media/$@.\nExiting.\n"
+	exit 1
+fi;
+
+rsync -avrulp --delete /media/$@/ $BACKUPDIR$@/
