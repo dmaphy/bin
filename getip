@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# getip
+#
+# (C) Copyright 2009 by Dominic Hopf <dh@dmaphy.de>
+# Version: 1.0.0
+# Last Change: 2011-07-30
+#
+# A simple script which outputs your current IP which is present to the internet.
+# It may be useful if you are behind a router and want to know which IP address
+# the router has on the internet site.
+
+# Note that this script needs a simple script on the internet site which outputs
+# the environment variable REMOTE_ADDR. This should be available in every
+# language which is used for server side scripting
+# (e.g. PHP, Perl, SSI, Python, and others)
+
+echo -n `date +"%F %T"` "Your current external IP is: `time curl -s -m 15 http://ip.rcksrv.de/index.php`"; echo;
