@@ -1,2 +1,4 @@
 #!/usr/bin/perl -p
+
+# Pipe Squid Logs through this script and have fun..
 s/^\d+/localtime $&/e;
