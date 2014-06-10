@@ -1,10 +1,6 @@
 #!/bin/bash
 
-
 CONFIGDIR=$HOME/.config/
-LOGFILE=$HOME/.logs/confkeeper
-
-VERBOSE=0
 
 
 cd $CONFIGDIR
@@ -20,6 +16,11 @@ fi
 usage()
 {
 	cat <<EOT
+Small tool to keep your \$HOME/.config/ under control. Configure this as a cron
+job in some way like this:
+
+0 0 * * * $HOME/bin/confkeeper -c
+
 Usage: $0 -c
 EOT
 }
@@ -40,7 +41,7 @@ while getopts "hvc" opt; do
 			usage
 			;;
 		v)
-			VERBOSE=1
+			set -x
 			;;
 		c)
 			cron
