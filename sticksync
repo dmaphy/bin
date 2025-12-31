@@ -2,20 +2,33 @@
 
 #       sticksync
 #
-#       (C) Copyright 2010 by Dominic Hopf <dmaphy@googlemail.com>
-#       Version: 1.0.0
-#       Last Change: 2010-02-28
+#       (C) Copyright 2017 by Dominic Hopf <dmaphy@googlemail.com>
+#       Version: 1.0.1
+#       Last Change: 2017-07-15
 
 BACKUPDIR=$HOME/backups/
+MEDIAPATH=/run/media/dmaphy/
+
+usage() {
+cat <<EOF
+Usage: $0 <name>
+
+Where <name> is one of 1GSTICK or 8GSTICK.
+EOF
+exit 1;
+}
+
+if [ -z "$@" ]; then
+	usage
+fi
 
 if [ ! -d $BACKUPDIR$@ ]; then
-	echo -e "Could not find $BACKUPDIR$@.\nExiting.\n"
-	exit 1
-fi;
+	mkdir -p $BACKUPDIR$@
+fi
 
-if [ ! -d /media/$@  ]; then
-	echo -e "Could not find /media/$@.\nExiting.\n"
+if [ ! -d $MEDIAPATH$@  ]; then
+	echo -e "Could not find $MEDIAPATH$@.\nExiting.\n"
 	exit 1
-fi;
+fi
 
-rsync -avrulp --delete /media/$@/ $BACKUPDIR$@/
+rsync -avrulp --delete $MEDIAPATH$@/ $BACKUPDIR$@/

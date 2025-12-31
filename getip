@@ -15,4 +15,4 @@
 # language which is used for server side scripting
 # (e.g. PHP, Perl, SSI, Python, and others)
 
-echo -n `date +"%F %T"` "Your current external IP is: `time curl -s -m 15 http://ip.rcksrv.de/index.php`"; echo;
+echo -n `date +"%F %T"` "Your current external IP is: `time curl -s -m 15 https://ip.rcksrv.de/index.php`"; echo;
